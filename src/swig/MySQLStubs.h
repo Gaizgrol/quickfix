@@ -1,6 +1,6 @@
 #ifndef HAVE_MYSQL
 
-#include "Utility.h"
+#include "SWIGUtility.h"
 
 class MYSQL {};
 
