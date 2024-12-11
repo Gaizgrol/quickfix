@@ -9,6 +9,8 @@
 #ifndef SWIG_quickfix_WRAP_H_
 #define SWIG_quickfix_WRAP_H_
 
+#include "Except.h"
+#include "Exceptions.h"
 #include <map>
 #include <string>
 
@@ -112,9 +114,12 @@ public:
     virtual void onLogon(FIX::SessionID const &arg0);
     virtual void onLogout(FIX::SessionID const &arg0);
     virtual void toAdmin(FIX::Message &arg0,FIX::SessionID const &arg1);
-    virtual void toApp(FIX::Message &arg0,FIX::SessionID const &arg1);
-    virtual void fromAdmin(FIX::Message const &arg0,FIX::SessionID const &arg1);
-    virtual void fromApp(FIX::Message const &arg0,FIX::SessionID const &arg1);
+    virtual void toApp(FIX::Message &arg0,FIX::SessionID const &arg1)
+    EXCEPT ( FIX::DoNotSend );
+    virtual void fromAdmin(FIX::Message const &arg0,FIX::SessionID const &arg1)
+    EXCEPT ( FIX::FieldNotFound, FIX::IncorrectDataFormat, FIX::IncorrectTagValue, FIX::RejectLogon );
+    virtual void fromApp(FIX::Message const &arg0,FIX::SessionID const &arg1)
+    EXCEPT ( FIX::FieldNotFound, FIX::IncorrectDataFormat, FIX::IncorrectTagValue, FIX::UnsupportedMessageType );
 
 /* Internal director utilities */
 public:
