@@ -33,7 +33,7 @@
 #pragma comment( lib, "libpq" )
 #endif
 
-#include <libpq-fe.h>
+#include <postgresql/libpq-fe.h>
 #include "DatabaseConnectionID.h"
 #include "DatabaseConnectionPool.h"
 #include "Mutex.h"
